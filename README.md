@@ -21,7 +21,6 @@ It reads responses from another memory backed reply queue.
 MemoryMappedGenericQueue.java
 
 A low latency off-heap persistent queue implementation based on memory cached files. Inspired by HFT Chronicle Queue.
-It class is not thread safe as the intention is inter process communication on the same server.
 
  <bold>
   Start the Prime app before starting the Randomizer app.
