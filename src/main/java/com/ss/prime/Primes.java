@@ -15,7 +15,7 @@ import java.util.concurrent.*;
  *  It checks if the number is prime and sends the reply on reply queue.
  *
  *  GC logs generated after processing 150k messages in few secs are hosted here:
- *  http://gceasy.io/diamondgc-report.jsp?oTxnId_value=f9066de7-6484-4f5a-b2ae-b219c7057c8c
+ *  http://gceasy.io/my-gc-report.jsp?p=c2hhcmVkLzIwMTgvMDYvMTkvLS1nY2xvZy5sb2cuMC5jdXJyZW50LS0yMi01Ni00MQ==
  *
  *  JVM Parameters to use:
  *  -XX:+UseG1GC -Xloggc:gclog.log -Xmx1g -Xms1g -XX:+DisableExplicitGC -XX:NumberOfGCLogFiles=5 -XX:+PrintGC -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseGCLogFileRotation -XX:-UseLargePagesIndividualAllocation
