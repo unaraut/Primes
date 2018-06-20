@@ -25,5 +25,5 @@ A low latency off-heap persistent queue implementation based on memory cached fi
  **Start the Prime app before starting the Randomizer app.**
  
  **If running on windows delete the files "prime-queue" and "result-queue" before each run as File.deleteOnExit
- doesnt work reliably.
- >rm prime-queue result-queue**
+ doesnt work reliably.**
+ 
