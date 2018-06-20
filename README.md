@@ -8,6 +8,7 @@ It checks if the number is prime and sends the reply on reply queue.
 The producer (Randomizer) is not slowed down if consumer(Prime) cant keep up. Prime maintains a workQueue to buffer work.
 This uses a LinkedBlockingQueue but can be changed to a bounded RingBuffer to drop older messages. eg impl below.
 
+```java
 public class ArrayRingBuffer<T> extends AbstractQueue<T>
 {
     private final ArrayBlockingQueue<T> backingArray;   
@@ -27,9 +28,12 @@ public class ArrayRingBuffer<T> extends AbstractQueue<T>
     }
     ....
  }
-
+```
 GC logs generated after processing 150k messages in few secs are hosted here:
 http://gceasy.io/my-gc-report.jsp?p=c2hhcmVkLzIwMTgvMDYvMTkvLS1nY2xvZy5sb2cuMC5jdXJyZW50LS0yMi01Ni00MQ==
+
+The important parameter is that Prime app creates new objects at a very slow rate.
+***Avg creation rate 	2.96 mb/sec***
 
 JVM Parameters to use:
 -XX:+UseG1GC -Xloggc:gclog.log -Xmx1g -Xms1g -XX:+DisableExplicitGC -XX:NumberOfGCLogFiles=5 -XX:+PrintGC -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseGCLogFileRotation -XX:-UseLargePagesIndividualAllocation
