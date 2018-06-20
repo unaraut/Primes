@@ -2,10 +2,10 @@
 
 ### Primes.java
 
-Application which receives requests of integers from a non durable memory mapped queue. See MemoryMappedGenericQueue
-It checks if the number is prime and sends the reply on reply queue. 
+Application which receives requests of integers from a non blocking memory mapped queue. See MemoryMappedGenericQueue.
+It checks if the number is prime and sends the reply on a reply queue.
 
-The producer (Randomizer) is not slowed down if consumer(Prime) cant keep up. Prime maintains a workQueue to buffer work.
+The producer (Randomizer) is not slowed down if consumer(Prime) cant keep up. Prime internally maintains a workQueue to buffer work.
 This uses a LinkedBlockingQueue but can be changed to a bounded RingBuffer to drop older messages. eg impl below.
 
 ```java
@@ -45,7 +45,7 @@ It reads responses from another memory backed reply queue.
 ### MemoryMappedGenericQueue.java
 
 A low latency off-heap persistent queue implementation based on memory cached files. Inspired by HFT Chronicle Queue.
-It is a simple non blocking queue bounded by the file size on disk.
+It is a simple non blocking queue bounded by the file size on disk. 
 
 
  **Start the Prime app before starting the Randomizer app.**
