@@ -5,18 +5,18 @@ import com.ss.prime.Primes;
 import java.util.concurrent.RecursiveTask;
 
 /**
- * The fork join task for prime checking. The algoritm is simple trial division.
+ * The fork join task for prime checking. The algorithm is simple trial division.
  *
- * It divides the range of divisors into 2 and creates 2 smaller sub tasks for execution.
+ * It divides the range of divisors into 2 and creates smaller sub tasks for execution.
  *
- * Since at any time if one of the divisors divides the prime candidate then we dont need
- * to continue further operation. ForkJoin tasks once fired cannot be cleanly recalled back.
+ * If one of the recursive tasks finds that the candidate is composite, then we dont need to continue checking other divisors.
+ * But ForkJoin tasks once fired cannot be cleanly recalled back.
  *
- * So a volatile flag is used to denote completion of checks by one of the fork join  threeads.
- * The other threads see this flag as set and stop computation.
+ * Hence a volatile flag is used to set completion by one of the fork join threeads.
+ * The other threads see this flag as set and dont start computation.
  *
  * The downside of checking a volatile variable by multiple threads and stopping is better than several fork join tasks
- * continuing to execute till end, even after one of the tasks has determined the the number is composite.
+ * continuing to execute till end.
  *
  */
 public class PrimeForkJoinTask extends RecursiveTask<Boolean> {
